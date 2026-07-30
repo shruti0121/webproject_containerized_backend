@@ -10,7 +10,7 @@ const client = new DynamoDBClient({
 router.post("/", async (req,res) => {
 
   const userid = req.body.sub;
-  const productid = req.body.product_id;
+  const productid = req.body.productid;
   const cost = req.body.cost;
   const date = req.body.deliverydate;
   try{
