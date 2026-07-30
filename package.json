@@ -1,0 +1,12 @@
+{
+  "name": "ricemill-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "cors": "^2.8.5",
+    "@aws-sdk/client-dynamodb": "^3.800.0"
+  }
+}

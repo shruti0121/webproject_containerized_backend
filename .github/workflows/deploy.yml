@@ -1,0 +1,61 @@
+name : deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:  #what are actions job now ??
+  Build-and-push: #name of the job is upto us we can choose the name that this action will perform 
+    name: Build Docker image and push it to ECR  #human readable name will be shown in github action ui 
+    runs-on: ubuntu-latest
+
+    permissions : 
+      id-token: write  #Allow this GitHub Actions workflow to create an OIDC identity token 
+      contents: read  #Allow the workflow to read the repository contents.
+    #now job is made up of steps and steps run in order if step 2 fails step 3 does not run 
+
+    steps: 
+      - name: checkout repository version v2 owner actions 
+        uses: actions/checkout@v4 #run a pre built GHithub action and download the repo on the ubuntu   server initially it is only on github repo, now we can install packages and stuff 
+
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::882885365745:role/IAM_GITHUB_CONTAINRIZED_BACKEND
+          role-session-name: GitHub-Action-Role
+          aws-region: us-east-1
+
+          # Login to ECR
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+       # Build Docker image
+      - name: Build Docker image
+        run: |
+         docker build -t backend .
+
+      # Tag image
+      - name: Tag Docker image
+        run: |
+          docker tag backend:latest \
+          <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/backend:latest
+
+      # Push image
+      - name: Push Docker image to ECR
+        run: |
+          docker push \
+          <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/backend:latest
+
+    
+    
+
+      #now we have cloudformation template next we need permission to aws to deploy these 
+
+
+
+
+
+
+
+
