@@ -76,4 +76,50 @@ router.post("/", async (req,res) => {
  
 }) ; 
 
+
+
+//----------------------------------------------------------------------------------------//
+router.get("/:productid", async (req,res) => {
+  const productid = req.params.productid;
+
+  try {
+    const result = await client.send(
+      new GetItemCommand({
+          TableName: "Ricemill_products_cdk",
+          Key: {
+              prod_id: {
+                  S: productid 
+              }
+          }
+      })
+  );
+
+
+  res.status(200).json(result.Items);
+
+
+  } catch (error) {
+
+      console.error(error);
+
+      res.status(500).json({
+
+        message:error.message
+
+    });
+     
+  }
+ 
+}) ; 
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;

@@ -168,4 +168,47 @@ router.post("/", async (req,res) => {
  
 }) ; 
 
+
+
+//------------------------------------------------------------------------------------------//
+router.get("/", async (req,res) => {
+  const userid = event. query.user_id;
+ 
+  try{
+    const result =  await client.send(
+      new QueryCommand
+          ({
+              TableName: "Ricemill_orders_cdk",
+              KeyConditionExpression: "user_id = :userid",
+              ExpressionAttributeValues: {
+                  ":userid": { S: userid }
+              }
+   
+          })
+   
+     )
+   
+    
+       res.status(200).json({
+  
+        message:"get orders"
+  
+    });
+
+  }  catch (error) {
+
+      console.error(error);
+
+      res.status(500).json({
+
+        message:error.message
+
+    });
+     
+  }
+ 
+}) ; 
 module.exports = router; 
+
+
+
