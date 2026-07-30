@@ -11,6 +11,8 @@ router.post("/", async (req,res) => {
 
   const userid = req.body.sub;
   const productid = req.body.product_id;
+  const cost = req.body.cost;
+  const date = req.body.deliverydate;
   try{
     const result =  await client.send(
       new UpdateItemCommand({
