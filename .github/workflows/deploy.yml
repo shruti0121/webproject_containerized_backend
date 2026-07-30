@@ -39,13 +39,13 @@ jobs:  #what are actions job now ??
       - name: Tag Docker image
         run: |
           docker tag backend:latest \
-          <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/backend:latest
+          882885365745.dkr.ecr.us-east-1.amazonaws.com/backend:latest
 
       # Push image
       - name: Push Docker image to ECR
         run: |
           docker push \
-          <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/backend:latest
+          882885365745.dkr.ecr.us-east-1.amazonaws.com/backend:latest
 
     
     
