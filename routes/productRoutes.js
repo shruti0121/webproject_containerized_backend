@@ -20,10 +20,7 @@ router.get("/", async (req,res) => {
   ); //returned result will be JSON object so we need to stringify it 
 
 
-      res.status(201).json({
-        message:"Products fetched",
-       
-    });
+  res.status(200).json(result.Items);
 
 
   } catch (error) {

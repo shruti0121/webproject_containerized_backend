@@ -26,10 +26,7 @@ router.post("/", async (req,res) => {
 
      )
 
-      res.status(201).json({
-        message:"Cart count fetched",
-        userid:req.body.sub 
-    });
+     res.status(200).json(result.Items);
 
 
   } catch (error) {
