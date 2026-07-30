@@ -1,6 +1,6 @@
 const express = require("express");
 //we need authenticate the token before sending the request to endpoint right ? 
-const { DynamoDBClient, ScanCommand } = require("@aws-sdk/client-dynamodb") ;
+const { DynamoDBClient, ScanCommand,GetItemCommand } = require("@aws-sdk/client-dynamodb") ;
 const router = express.Router();
 
 
@@ -21,6 +21,45 @@ router.get("/", async (req,res) => {
 
 
   res.status(200).json(result.Items);
+
+
+  } catch (error) {
+
+      console.error(error);
+
+      res.status(500).json({
+
+        message:error.message
+
+    });
+     
+  }
+ 
+}) ; 
+
+
+//----------------------------------------------------------------------------------------//
+router.post("/", async (req,res) => {
+
+  try {
+
+
+    const productid = req.body.productid.S;
+    console.log(productid)
+
+
+    const result = await client.send(
+        new GetItemCommand
+            ({
+                TableName: "Ricemill_products_cdk",
+                Key: {
+                    prod_id: { S: productid }
+                }
+            })
+    ); //returned result will be JSON object so we need to stringify it 
+
+
+  res.status(200).json(result.Item);
 
 
   } catch (error) {
