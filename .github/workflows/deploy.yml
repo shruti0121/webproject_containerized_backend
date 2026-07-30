@@ -33,30 +33,34 @@ jobs:  #what are actions job now ??
        # Build Docker image  this actually builds image from dockerfile
       - name: Build Docker image       #here docker builds image with repo name backend: <tagname> if not given it chooses latest itself like here  -t means tag here 
         run: |
-         docker build -t backend .         
+         docker build -t backend:${{ github.sha }}  .         
 
       # Tag image   it takes the existing image from above  and tag it for ecr 
       - name: Tag Docker image   #this gives the same image diff name now we have 
         run: |
-          docker tag backend:latest \
-          882885365745.dkr.ecr.us-east-1.amazonaws.com/backend    
+          docker tag backend:${{ github.sha }}  \
+          882885365745.dkr.ecr.us-east-1.amazonaws.com/backend:${{ github.sha }}    
          
 
       # Push image
       - name: Push Docker image to ECR
         run: |
           docker push \
-          882885365745.dkr.ecr.us-east-1.amazonaws.com/backend
+          882885365745.dkr.ecr.us-east-1.amazonaws.com/backend:${{ github.sha }}
+
+      - name: Update task definition image
+        run: |
+            sed -i "s|IMAGE_TAG|${{ github.sha }}|g" task-definition.json
 
 
       # now the already running containers do not pull new images by default only new running ocntainers will so in order to make sure the already running containers pulls new image we run this force deployment
-      - name: Force ECS deployment
-        run: |
-            aws ecs update-service \
-            --cluster WebProjectContainerizedStack-ClusterEB0386A7-IMjUNlVMYUrc \
-            --service Ricemill_ECS_service \
-            --force-new-deployment
- 
+      - name: Deploy ECS service
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with:
+          task-definition: task-definition.json
+          service: Ricemill_ECS_service
+          cluster: WebProjectContainerizedStack-ClusterEB0386A7-IMjUNlVMYUrc
+          wait-for-service-stability: true
 
       #now we have cloudformation template next we need permission to aws to deploy these 
 

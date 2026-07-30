@@ -1,0 +1,61 @@
+{
+  "family": "WebProjectContainerizedStackTaskDefinition84021E93",
+  "taskRoleArn": "arn:aws:iam::882885365745:role/WebProjectContainerizedSt-TaskRolecontainer9C71E2A1-WxxgDcQFwViD",
+  "executionRoleArn": "arn:aws:iam::882885365745:role/WebProjectContainerizedSta-ExecutionRoleECRD8DA886B-xG7eNpmndXTd",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "512",
+  "memory": "1024",
+  "containerDefinitions": [
+    {
+      "name": "ContainerDefinition",
+      "image": "882885365745.dkr.ecr.us-east-1.amazonaws.com/backend:IMAGE_TAG",
+      "cpu": 0,
+      "memory": 512,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        {
+          "name": "CART_TABLE",
+          "value": "Ricemill_carts_cdk"
+        },
+        {
+          "name": "ORDER_TABLE",
+          "value": "Ricemill_orders_cdk"
+        },
+        {
+          "name": "ANALYTICS_TABLE",
+          "value": "Ricemill_analytics_v3_cdk"
+        },
+        {
+          "name": "PRODUCTS_TABLE",
+          "value": "Ricemill_products_cdk"
+        },
+        {
+          "name": "INVENTORY_TABLE",
+          "value": "Ricemill_product_inventory_cdk"
+        },
+        {
+          "name": "USER_TABLE",
+          "value": "Ricemill_user_cdk"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "WebProjectContainerizedStack-TaskDefinitionContainerDefinitionLogGroupBB0BAFB6-SgmPIlxtw8He",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ricemill-api"
+        }
+      }
+    }
+  ]
+}
