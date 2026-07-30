@@ -9,9 +9,6 @@ const client = new DynamoDBClient({
 });
 
 router.post("/", async (req,res) => {
-
-
-
   try {
     const result =  await client.send(
       new QueryCommand

@@ -3,6 +3,7 @@ const express = require("express");
 const loginRoutes = require("./routes/loginRoutes.js");
 const productRoutes = require("./routes/productRoutes.js");
 const cartRoutes = require("./routes/cartRoute.js");
+const additemcartRoutes = require("./routes/additemcartRoute.js");
 const cors = require("cors");
 
 const app = express();
@@ -17,7 +18,8 @@ app.get("/", (req, res) => {
 
 app.use("/login-container-cdk", loginRoutes);
 app.use("/product-container-cdk", productRoutes);
-app.use("/cart-container-cdk", cartRoutes);
+app.use("/cartcount-container-cdk", cartRoutes);
+app.use("/additemcart-container-cdk", additemcartRoutes);
 
 // Start server
 const PORT = 3000;
