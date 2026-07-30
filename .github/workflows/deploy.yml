@@ -53,10 +53,10 @@ jobs:  #what are actions job now ??
       - name: Force ECS deployment
         run: |
             aws ecs update-service \
-            --cluster WebProjectContainerizedStack-ClusterEB0386A7 \
+            --cluster WebProjectContainerizedStack-ClusterEB0386A7-IMjUNlVMYUrc \
             --service Ricemill_ECS_service \
             --force-new-deployment
-    
+ 
 
       #now we have cloudformation template next we need permission to aws to deploy these 
 
