@@ -172,7 +172,7 @@ router.post("/", async (req,res) => {
 
 //------------------------------------------------------------------------------------------//
 router.get("/", async (req,res) => {
-  const userid = event. query.user_id;
+  const userid = req.query.user_id;
  
   try{
     const result =  await client.send(
