@@ -9,8 +9,6 @@ const client = new DynamoDBClient({
 });
 
 router.post("/", async (req,res) => {
-console.log(req);
-console.log(req.body);
 
 
 

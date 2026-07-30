@@ -9,10 +9,6 @@ const client = new DynamoDBClient({
 });
 
 router.get("/", async (req,res) => {
-console.log(req);
-console.log(req.body);
-
-
 
   try {
     const result =  await client.send(
