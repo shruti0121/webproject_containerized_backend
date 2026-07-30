@@ -19,7 +19,7 @@ router.post("/", async (req,res) => {
 
   try {
 
-    const userid = req. queryStringParameters.user_id;
+    const userid = req. query.user_id;
     const orderid = crypto.randomUUID();
     const products = req.body.products;
     console.log(products);
