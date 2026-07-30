@@ -8,7 +8,7 @@ const client = new DynamoDBClient({
     region: "us-east-1"
 });
 
-router.post("/", async (req,res) => {
+router.get("/", async (req,res) => {
 console.log(req);
 console.log(req.body);
 
