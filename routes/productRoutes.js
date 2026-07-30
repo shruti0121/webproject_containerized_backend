@@ -95,7 +95,7 @@ router.get("/:productid", async (req,res) => {
   );
 
 
-  res.status(200).json(result.Items);
+  res.status(200).json(result.Item);
 
 
   } catch (error) {

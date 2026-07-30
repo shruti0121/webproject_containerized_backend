@@ -189,11 +189,7 @@ router.get("/", async (req,res) => {
      )
    
     
-       res.status(200).json({
-  
-        message:"get orders"
-  
-    });
+       res.status(200).json(result.Items);
 
   }  catch (error) {
 
