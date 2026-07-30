@@ -1,6 +1,6 @@
 const express = require("express");
 //we need authenticate the token before sending the request to endpoint right ? 
-const { DynamoDBClient, PutItemCommand } = require("@aws-sdk/client-dynamodb") ;
+const { DynamoDBClient, ScanCommand } = require("@aws-sdk/client-dynamodb") ;
 const router = express.Router();
 
 
