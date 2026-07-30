@@ -26,7 +26,7 @@ console.log(req.body);
 
       res.status(201).json({
         message:"Products fetched",
-        userid:sub
+       
     });
 
 

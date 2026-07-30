@@ -21,7 +21,7 @@ console.log(req.body);
               TableName: "Ricemill_carts_cdk",
               KeyConditionExpression: "user_id = :userid",
               ExpressionAttributeValues: {
-                  ":userid": { S: userid }
+                  ":userid": { S: req.body.sub  }
               }
 
           })
@@ -30,7 +30,7 @@ console.log(req.body);
 
       res.status(201).json({
         message:"Cart count fetched",
-        userid:sub
+        userid:req.body.sub 
     });
 
 
