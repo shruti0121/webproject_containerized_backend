@@ -3,21 +3,21 @@ const express = require("express");
 const loginRoutes = require("./routes/loginRoutes");
 const cors = require("cors");
 
-
-// const productRoutes = require("./routes/productRoutes");
-// const cartRoutes = require("./routes/cartRoutes");
-
-//const authenticate = require("./middleware/auth");
-//const orderRoutes = require("./routes/orderRoutes");
-
 const app = express();
-app.use(cors());
-app.use(express.json());//Add middleware that parses incoming JSON request bodies and converts them into JavaScript objects stored in req.body
-app.use("/login-container-cdk", loginRoutes);
-// app.use("/products", productRoutes);
-// app.use("/cart", cartRoutes);
-//app.use("/inventory", inventoryRoutes);
 
-app.listen(3000, () => {
-    console.log("Backend running");
+app.use(cors());
+app.use(express.json());
+
+// Health check route for AWS ALB
+app.get("/", (req, res) => {
+    res.status(200).send("Ricemill backend running");
+});
+
+app.use("/login-container-cdk", loginRoutes);
+
+// Start server
+const PORT = 3000;
+
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Backend running on port ${PORT}`);
 });
