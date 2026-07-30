@@ -30,16 +30,16 @@ jobs:  #what are actions job now ??
       - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v2
 
-       # Build Docker image
-      - name: Build Docker image
+       # Build Docker image  this actually builds image from dockerfile
+      - name: Build Docker image       #here docker builds image with repo name backend: <tagname> if not given it chooses latest itself like here  -t means tag here 
         run: |
-         docker build -t backend .
+         docker build -t backend .         
 
-      # Tag image
-      - name: Tag Docker image
+      # Tag image   it takes the existing image from above  and tag it for ecr 
+      - name: Tag Docker image   #this gives the same image diff name now we have 
         run: |
           docker tag backend:latest \
-          882885365745.dkr.ecr.us-east-1.amazonaws.com/backend
+          882885365745.dkr.ecr.us-east-1.amazonaws.com/backend    
          
 
       # Push image
@@ -48,7 +48,14 @@ jobs:  #what are actions job now ??
           docker push \
           882885365745.dkr.ecr.us-east-1.amazonaws.com/backend
 
-    
+
+      # now the already running containers do not pull new images by default only new running ocntainers will so in order to make sure the already running containers pulls new image we run this force deployment
+      - name: Force ECS deployment
+        run: |
+            aws ecs update-service \
+            --cluster WebProjectContainerizedStack-ClusterEB0386A7 \
+            --service Ricemill_ECS_service \
+            --force-new-deployment
     
 
       #now we have cloudformation template next we need permission to aws to deploy these 

@@ -15,36 +15,21 @@ console.log(req.body);
 
 
   try {
-      const sub =  req.body.sub ;
-
-      const username = req.body.username;
-
-
-      const params = {
-
-          TableName: "Ricemill_user_cdk",
-
-          Item: {
-
-              user_id: {
-                  S: sub
-              },
-
-              username: {
-                  S: username
+    const result =  await client.send(
+      new QueryCommand
+          ({
+              TableName: "Ricemill_carts_cdk",
+              KeyConditionExpression: "user_id = :userid",
+              ExpressionAttributeValues: {
+                  ":userid": { S: userid }
               }
 
-          }
-      };
+          })
 
-
-      await client.send(
-          new PutItemCommand(params)
-      );
-
+     )
 
       res.status(201).json({
-        message:"User created",
+        message:"Cart count fetched",
         userid:sub
     });
 

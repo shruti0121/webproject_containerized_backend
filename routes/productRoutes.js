@@ -15,36 +15,17 @@ console.log(req.body);
 
 
   try {
-      const sub =  req.body.sub ;
-
-      const username = req.body.username;
-
-
-      const params = {
-
-          TableName: "Ricemill_user_cdk",
-
-          Item: {
-
-              user_id: {
-                  S: sub
-              },
-
-              username: {
-                  S: username
-              }
-
-          }
-      };
-
-
-      await client.send(
-          new PutItemCommand(params)
-      );
+    const result =  await client.send(
+      new ScanCommand
+      ({
+          TableName: "Ricemill_products_cdk"
+      })
+      
+  ); //returned result will be JSON object so we need to stringify it 
 
 
       res.status(201).json({
-        message:"User created",
+        message:"Products fetched",
         userid:sub
     });
 
