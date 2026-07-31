@@ -24,6 +24,10 @@
       ],
       "environment": [
         {
+          "name": "SNS_TOPIC_ARN",
+          "value": "arn:aws:sns:us-east-1:882885365745:ricemill_snstopic_orderplaced"
+      },
+        {
           "name": "CART_TABLE",
           "value": "Ricemill_carts_cdk"
         },
