@@ -2,7 +2,7 @@
 
 Containerized Express.js REST API for the Rice Mill Management Platform, deployed on Amazon ECS Fargate behind an Application Load Balancer.
 
-This repo contains the backend service only. Infrastructure (VPC, ALB, ECS cluster, ECR, DynamoDB, Cognito, SNS/SQS) is provisioned separately via AWS CDK. See the [infra repo / frontend repo] for the rest of the project.
+This repo contains the backend service only. Infrastructure (VPC, ALB, ECS cluster, ECR, DynamoDB, Cognito, SNS/SQS) is provisioned separately via AWS CDK. See the https://github.com/shruti0121/webproject_containerized_infra repo for the rest of the project.
 
 ---
 
