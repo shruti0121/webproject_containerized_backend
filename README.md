@@ -1,3 +1,4 @@
+Currently task-definition manually enters execution role and task role arn to resolve this we let cdk output the arn's on the deployment and then we use then im the backend 
 # Rice Mill Backend
 
 Containerized Express.js REST API for the Rice Mill Management Platform, deployed on Amazon ECS Fargate behind an Application Load Balancer.

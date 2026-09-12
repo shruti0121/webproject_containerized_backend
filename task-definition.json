@@ -1,7 +1,7 @@
 {
-  "family": "WebProjectContainerizedStackTaskDefinition84021E93",
-  "taskRoleArn": "arn:aws:iam::882885365745:role/RicemillBackendStack-TaskRolecontainer9C71E2A1-QkKVpTGK8UY1", 
-  "executionRoleArn": "arn:aws:iam::882885365745:role/RicemillBackendStack-ExecutionRoleECRD8DA886B-KZKdffyWejgD",
+  "family": "RicemillBackendTaskDefinition",
+  "taskRoleArn": "TASK_ROLE_ARN", 
+  "executionRoleArn": "EXECUTION_ROLE_ARN",
   "networkMode": "awsvpc",
   "requiresCompatibilities": [
     "FARGATE"

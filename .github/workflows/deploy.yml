@@ -52,6 +52,22 @@ jobs:  #what are actions job now ??
         run: |
             sed -i "s|IMAGE_TAG|${{ github.sha }}|g" task-definition.json
 
+            
+      - name: Get IAM role ARNs
+        run: |
+              TASK_ROLE_ARN=$(aws cloudformation describe-stacks \
+                --stack-name RicemillBackendStack \
+                --query "Stacks[0].Outputs[?OutputKey=='TaskRoleArn'].OutputValue" \
+                --output text)
+          
+              EXECUTION_ROLE_ARN=$(aws cloudformation describe-stacks \
+                --stack-name RicemillBackendStack \
+                --query "Stacks[0].Outputs[?OutputKey=='ExecutionRoleArn'].OutputValue" \
+                --output text)
+          
+              sed -i "s|TASK_ROLE_ARN|$TASK_ROLE_ARN|g" task-definition.json
+              sed -i "s|EXECUTION_ROLE_ARN|$EXECUTION_ROLE_ARN|g" task-definition.json
+
 
       # now the already running containers do not pull new images by default only new running ocntainers will so in order to make sure the already running containers pulls new image we run this force deployment
       - name: Deploy ECS service

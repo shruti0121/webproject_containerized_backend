@@ -7,9 +7,10 @@ const router = express.Router();
 const client = new DynamoDBClient({
     region: "us-east-1"
 });
+console.log("RUNNING CURRENT PRODUCT ROUTES");
 
 router.get("/", async (req,res) => {
-
+  console.log("RUNNING CURRENT PRODUCT ROUTES_get");
   try {
     const result =  await client.send(
       new ScanCommand
