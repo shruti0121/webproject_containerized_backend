@@ -98,6 +98,9 @@ router.post("/", async (req,res) => {
       
       console.log("SNS Message (JSON):");
       console.log(JSON.stringify(message));
+
+
+      
     await snsClient.send(
         new PublishCommand({
           TopicArn: process.env.SNS_TOPIC_ARN,
