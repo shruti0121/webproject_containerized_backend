@@ -35,7 +35,6 @@ router.post("/", async (req,res) => {
         },    
         ReturnValues:"ALL_NEW"
       })
-
        )
        console.log(result)
 
