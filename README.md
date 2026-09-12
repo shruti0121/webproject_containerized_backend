@@ -148,7 +148,7 @@ Update ECS service -> roll out new tasks -> wait for stability
 
 ## Known Limitations / Next Steps
 
-- **Execution role and task role ARNs are manually copy-pasted** into `task-definition.json` from the infra repo's CDK output, rather than fetched programmatically. If the infra repo redeploys and IAM roles are replaced, this file goes stale silently. Planned fix: have the infra CDK stack publish these ARNs to SSM Parameter Store, and have this repo's deploy pipeline read them at deploy time instead of hardcoding.
+- Execution role and task role ARNs are dynamically retrieved from CloudFormation stack outputs during the GitHub Actions deployment. The pipeline uses aws cloudformation describe-stacks to fetch the current ARNs and replaces the corresponding placeholders in task-definition.json before deploying the ECS task definition. This prevents the task definition from becoming stale when CDK-generated IAM role ARNs change.
 - No automated tests are wired into CI beyond `npm run test` being available to run manually — not yet a required check before merge/deploy.
 - No image vulnerability scanning on the ECR push step (ECR supports this natively via `aws ecr start-image-scan`).
 - Single task, no auto-scaling configured — matches the infra repo's current setup.
