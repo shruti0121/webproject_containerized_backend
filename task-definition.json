@@ -1,7 +1,7 @@
 {
   "family": "WebProjectContainerizedStackTaskDefinition84021E93",
-  "taskRoleArn": "arn:aws:iam::882885365745:role/WebProjectContainerizedSt-TaskRolecontainer9C71E2A1-WxxgDcQFwViD",
-  "executionRoleArn": "arn:aws:iam::882885365745:role/WebProjectContainerizedSta-ExecutionRoleECRD8DA886B-xG7eNpmndXTd",
+  "taskRoleArn": "arn:aws:iam::882885365745:role/RicemillBackendStack-TaskRolecontainer9C71E2A1-QkKVpTGK8UY1", 
+  "executionRoleArn": "arn:aws:iam::882885365745:role/RicemillBackendStack-ExecutionRoleECRD8DA886B-KZKdffyWejgD",
   "networkMode": "awsvpc",
   "requiresCompatibilities": [
     "FARGATE"
