@@ -22,7 +22,7 @@ jobs:  #what are actions job now ??
 
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::882885365745:role/IAM_GITHUB_CONTAINRIZED_BACKEND
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
           role-session-name: GitHub-Action-Role
           aws-region: us-east-1
 
@@ -39,14 +39,14 @@ jobs:  #what are actions job now ??
       - name: Tag Docker image   #this gives the same image diff name now we have 
         run: |
           docker tag backend:${{ github.sha }}  \
-          882885365745.dkr.ecr.us-east-1.amazonaws.com/backend:${{ github.sha }}    
+           ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/backend:${{ github.sha }}    
          
 
       # Push image
       - name: Push Docker image to ECR
         run: |
           docker push \
-          882885365745.dkr.ecr.us-east-1.amazonaws.com/backend:${{ github.sha }}
+           ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/backend:${{ github.sha }}
 
       - name: Update task definition image
         run: |
