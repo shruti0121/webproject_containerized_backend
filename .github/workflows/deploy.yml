@@ -59,7 +59,7 @@ jobs:  #what are actions job now ??
         with:
           task-definition: task-definition.json
           service: Ricemill_ECS_service
-          cluster: WebProjectContainerizedStack-ClusterEB0386A7-IMjUNlVMYUrc
+          cluster: RicemillBackendStack-ClusterEB0386A7-RbAnAn2IaShB
           wait-for-service-stability: true
 
       #now we have cloudformation template next we need permission to aws to deploy these 
